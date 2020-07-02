@@ -2,8 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:state_notifier/state_notifier.dart';
 
-final _counterProvider = StateProvider((ref) => 0);
+final _counterProvider = AutoDisposeStateNotifierProvider<_Counter>(
+  (_ref) => _Counter(),
+);
+
+class _Counter extends StateNotifier<int> {
+  _Counter() : super(0);
+
+  void increment() => state++;
+
+  @override
+  void dispose() {
+    print('disposed(state: $state)');
+    super.dispose();
+  }
+}
 
 class CounterDialogPage extends HookWidget {
   const CounterDialogPage({Key key}) : super(key: key);
@@ -23,7 +38,7 @@ class CounterDialogPage extends HookWidget {
             Text(
               'You have pushed the button this many times:',
             ),
-            _Counter(),
+            _CountText(),
           ],
         ),
       ),
@@ -40,21 +55,22 @@ class CounterDialogPage extends HookWidget {
   }
 }
 
-class _Counter extends HookWidget {
-  const _Counter({Key key}) : super(key: key);
+class _CountText extends HookWidget {
+  const _CountText({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${useProvider(_counterProvider).state}',
+      '${useProvider(_counterProvider.state)}',
       style: Theme.of(context).textTheme.headline4,
     );
   }
 }
 
-class _Dialog extends StatelessWidget {
+class _Dialog extends HookWidget {
   const _Dialog({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final controller = useProvider(_counterProvider);
     return AlertDialog(
       title: const Text('Dialog'),
       content: Column(
@@ -65,7 +81,7 @@ class _Dialog extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const _Counter(),
+              const _CountText(),
               const Gap(16),
               RaisedButton.icon(
                 icon: Icon(
@@ -73,7 +89,7 @@ class _Dialog extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 label: const Text('INCREMENT'),
-                onPressed: () => _counterProvider.read(context).state++,
+                onPressed: controller.increment,
               ),
             ],
           ),
