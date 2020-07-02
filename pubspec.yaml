@@ -1,0 +1,22 @@
+name: riverpod_example
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons:
+  hooks_riverpod:
+  flutter_hooks:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic_mono:
+
+flutter:
+  uses-material-design: true
