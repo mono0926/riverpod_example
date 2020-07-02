@@ -9,4 +9,10 @@ class Counter extends StateNotifier<int> {
   Counter() : super(0);
 
   void increment() => state++;
+
+  @override
+  void dispose() {
+    print('disposed(state: $state)');
+    super.dispose();
+  }
 }
