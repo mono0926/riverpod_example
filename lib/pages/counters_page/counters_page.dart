@@ -38,7 +38,7 @@ class _Tile extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = counterProvider(index);
+    final provider = counterProviderFamily(index);
     final controller = useProvider(provider);
     return ListTile(
       title: Text('Counter $index'),
