@@ -66,6 +66,9 @@ class _Tile extends HookWidget {
       onTap: () {
         Navigator.of(context).push<void>(
           MaterialPageRoute(
+            // How to pass the provider overridden by using ProviderScope
+            // Not recommended actually:
+            // https://twitter.com/remi_rousselet/status/1278592878638436353
             builder: (context) => ProviderScope(
               overrides: [
                 counterProvider.overrideAs(
