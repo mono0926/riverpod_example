@@ -46,6 +46,8 @@ class _Tile extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useProvider(counterProvider);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     return ListTile(
       title: Text('Counter $index'),
       trailing: Row(
@@ -57,7 +59,7 @@ class _Tile extends HookWidget {
           ),
           const SizedBox(width: 16),
           IconButton(
-            color: Theme.of(context).primaryColor,
+            color: colorScheme.primary,
             icon: const Icon(Icons.add),
             onPressed: controller.increment,
           ),
