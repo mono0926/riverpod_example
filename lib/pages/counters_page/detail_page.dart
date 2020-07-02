@@ -5,23 +5,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'counter_provider.dart';
 
 class DetailPage extends HookWidget {
-  const DetailPage({
-    Key key,
-    @required this.provider,
-  }) : super(key: key);
-
-  final AutoDisposeStateNotifierProvider<Counter> provider;
+  const DetailPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = useProvider(provider);
+    final controller = useProvider(counterProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Detail'),
       ),
       body: Center(
         child: Text(
-          'count: ${useProvider(provider.state)}',
+          'count: ${useProvider(counterProvider.state)}',
           style: Theme.of(context).textTheme.headline4,
         ),
       ),

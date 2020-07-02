@@ -19,8 +19,15 @@ class CountersPage extends HookWidget {
       ),
       body: ListView.separated(
         itemCount: 100,
-        itemBuilder: (context, i) => _Tile(
-          index: i,
+        itemBuilder: (context, i) => ProviderScope(
+          overrides: [
+            counterProvider.overrideAs(
+              Provider((ref) => ref.read(counterProviderFamily(i))),
+            ),
+          ],
+          child: _Tile(
+            index: i,
+          ),
         ),
         separatorBuilder: (context, _) => const Divider(height: 0),
       ),
@@ -38,15 +45,14 @@ class _Tile extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = counterProviderFamily(index);
-    final controller = useProvider(provider);
+    final controller = useProvider(counterProvider);
     return ListTile(
       title: Text('Counter $index'),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '${useProvider(provider.state)}',
+            '${useProvider(counterProvider.state)}',
             style: Theme.of(context).textTheme.subtitle1,
           ),
           const SizedBox(width: 16),
@@ -60,8 +66,13 @@ class _Tile extends HookWidget {
       onTap: () {
         Navigator.of(context).push<void>(
           MaterialPageRoute(
-            builder: (context) => DetailPage(
-              provider: provider,
+            builder: (context) => ProviderScope(
+              overrides: [
+                counterProvider.overrideAs(
+                  Provider((ref) => ref.read(counterProviderFamily(index))),
+                ),
+              ],
+              child: const DetailPage(),
             ),
           ),
         );
