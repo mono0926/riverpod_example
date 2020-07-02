@@ -15,6 +15,7 @@ dependencies:
   adaptive_dialog:
   state_notifier:
   recase:
+  gap:
 
 dev_dependencies:
   flutter_test:
