@@ -9,7 +9,7 @@ import 'detail_page.dart';
 class CountersPage extends HookWidget {
   const CountersPage({Key key}) : super(key: key);
 
-  static const routeName = '/counters';
+  static const routeName = '/not_recommended_counters';
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +66,19 @@ class _Tile extends HookWidget {
         ],
       ),
       onTap: () {
-        selectedIndexProvider.read(context).state = index;
         Navigator.of(context).push<void>(
           MaterialPageRoute(
-            builder: (context) => const DetailPage(),
+            // How to pass the provider overridden by using ProviderScope
+            // Not recommended actually:
+            // https://twitter.com/remi_rousselet/status/1278592878638436353
+            builder: (context) => ProviderScope(
+              overrides: [
+                counterProvider.overrideAs(
+                  Provider((ref) => ref.read(counterProviderFamily(index))),
+                ),
+              ],
+              child: const DetailPage(),
+            ),
           ),
         );
       },

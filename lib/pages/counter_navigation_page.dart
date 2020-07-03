@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 final _counterProvider = AutoDisposeStateNotifierProvider<_Counter>(
@@ -15,7 +16,7 @@ class _Counter extends StateNotifier<int> {
 
   @override
   void dispose() {
-    print('disposed(state: $state)');
+    logger.info('disposed(state: $state)');
     super.dispose();
   }
 }

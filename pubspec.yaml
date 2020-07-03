@@ -16,6 +16,7 @@ dependencies:
   state_notifier:
   recase:
   gap:
+  simple_logger:
 
 dev_dependencies:
   flutter_test:

@@ -24,11 +24,11 @@ class HomePage extends HookWidget {
       body: ListView(
         children: [
           ...PageInfo.all.map((info) {
-            final routeName = info.routeName;
             return ListTile(
-              title: Text(pascalCaseFromRouteName(routeName)),
+              title: Text(info.pageName),
+              subtitle: info.subTitle == null ? null : Text(info.subTitle),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.of(context).pushNamed(routeName),
+              onTap: () => Navigator.of(context).pushNamed(info.routeName),
             );
           }),
         ],
