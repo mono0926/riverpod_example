@@ -15,7 +15,7 @@ class _CountNotifier with ChangeNotifier {
   }
 }
 
-class ChangeNotifierCounterPage extends HookWidget {
+class ChangeNotifierCounterPage extends StatelessWidget {
   const ChangeNotifierCounterPage({Key key}) : super(key: key);
 
   static const routeName = '/change_notifier_counter';
