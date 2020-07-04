@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
+import 'package:uuid/uuid.dart';
 
 final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
   (_ref) {
@@ -15,30 +16,30 @@ final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
 );
 
 final counterProviderFamily =
-    AutoDisposeStateNotifierProviderFamily<Counter, int>(
-  (ref, index) => Counter(ref, index: index),
+    AutoDisposeStateNotifierProviderFamily<Counter, String>(
+  (ref, id) => Counter(ref, id: id),
 );
 
 class Counter extends StateNotifier<int> {
   Counter(
     this._ref, {
-    @required this.index,
-  }) : super(_ref.read(_dataSourceProvider).count(index: index)) {
+    @required this.id,
+  }) : super(_ref.read(counterStorageProvider).count(id: id)) {
     _removeListener = _dataSource.addListener((_) {
-      state = _dataSource.count(index: index);
+      state = _dataSource.count(id: id);
     });
   }
 
   final ProviderReference _ref;
-  final int index;
+  final String id;
 
   RemoveListener _removeListener;
 
-  _DataSource get _dataSource => _ref.read(_dataSourceProvider);
+  CounterStorage get _dataSource => _ref.read(counterStorageProvider);
 
   void increment() {
     _dataSource.update(
-      index: index,
+      id: id,
       count: state + 1,
     );
   }
@@ -51,21 +52,33 @@ class Counter extends StateNotifier<int> {
   }
 }
 
-final _dataSourceProvider =
-    AutoDisposeStateNotifierProvider((_) => _DataSource());
+final counterStorageProvider =
+    AutoDisposeStateNotifierProvider((_) => CounterStorage());
 
-class _DataSource extends StateNotifier<Map<int, int>> {
-  _DataSource() : super(<int, int>{});
+class CounterStorage extends StateNotifier<Map<String, int>> {
+  CounterStorage()
+      : super(
+          Map.fromEntries(
+            List.generate(
+                100,
+                (_) => MapEntry(
+                      _uuid.v4(),
+                      0,
+                    )),
+          ),
+        );
 
-  int count({@required int index}) => state[index] ?? 0;
+  static final _uuid = Uuid();
+
+  int count({@required String id}) => state[id];
 
   void update({
-    @required int index,
+    @required String id,
     @required int count,
   }) {
     state = {
       ...state,
-      index: count,
+      id: count,
     };
   }
 }

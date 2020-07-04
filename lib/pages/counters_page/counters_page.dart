@@ -13,22 +13,27 @@ class CountersPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ids = useProvider(
+      counterStorageProvider.state.select((s) => s.keys.toList()),
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(pascalCaseFromRouteName(routeName)),
       ),
       body: ListView.separated(
-        itemCount: 100,
-        itemBuilder: (context, i) => ProviderScope(
-          overrides: [
-            counterProvider.overrideAs(
-              Provider((ref) => ref.read(counterProviderFamily(i))),
-            ),
-          ],
-          child: _Tile(
-            index: i,
-          ),
-        ),
+        itemCount: ids.length,
+        itemBuilder: (context, index) {
+          final id = ids[index];
+          return ProviderScope(
+            key: ValueKey(id),
+            overrides: [
+              counterProvider.overrideAs(
+                Provider((ref) => ref.read(counterProviderFamily(id))),
+              ),
+            ],
+            child: _Tile(id: id),
+          );
+        },
         separatorBuilder: (context, _) => const Divider(height: 0),
       ),
     );
@@ -38,10 +43,10 @@ class CountersPage extends HookWidget {
 class _Tile extends HookWidget {
   const _Tile({
     Key key,
-    @required this.index,
+    @required this.id,
   }) : super(key: key);
 
-  final int index;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +54,8 @@ class _Tile extends HookWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return ListTile(
-      title: Text('Counter $index'),
+      title: const Text('Counter'),
+      subtitle: Text(id),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -66,7 +72,7 @@ class _Tile extends HookWidget {
         ],
       ),
       onTap: () {
-        selectedIndexProvider.read(context).state = index;
+        selectedIdProvider.read(context).state = id;
         Navigator.of(context).push<void>(
           MaterialPageRoute(
             builder: (context) => const DetailPage(),

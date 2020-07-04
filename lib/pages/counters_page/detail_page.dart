@@ -4,12 +4,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'counter_provider.dart';
 
-final selectedIndexProvider = StateProvider<int>((_) => null);
+final selectedIdProvider = StateProvider<String>((_) => null);
 
 final _detailPageCounterProvider = AutoDisposeStateNotifierProvider(
   (ref) => Counter(
     ref,
-    index: ref.read(selectedIndexProvider).state,
+    id: ref.read(selectedIdProvider).state,
   ),
 );
 

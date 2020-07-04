@@ -17,6 +17,7 @@ dependencies:
   recase:
   gap:
   simple_logger:
+  uuid:
 
 dev_dependencies:
   flutter_test:
