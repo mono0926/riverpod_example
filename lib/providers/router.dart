@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
 import 'package:riverpod_example/home_page.dart';
+import 'package:riverpod_example/pages/change_notofier_counter_page.dart';
 import 'package:riverpod_example/pages/counter_navigation_page.dart';
 import 'package:riverpod_example/pages/counter_page.dart';
 import 'package:riverpod_example/pages/counters_page/counters_page.dart';
@@ -15,6 +16,8 @@ class _Router {
   final Map<String, WidgetBuilder> pushRoutes = {
     HomePage.routeName: (_) => const HomePage(),
     CounterPage.routeName: (_) => const CounterPage(),
+    ChangeNotifierCounterPage.routeName: (_) =>
+        const ChangeNotifierCounterPage(),
     CounterDialogPage.routeName: (_) => const CounterDialogPage(),
     CountersPage.routeName: (_) => const CountersPage(),
     not_recommended.CountersPage.routeName: (_) =>
@@ -47,6 +50,7 @@ class PageInfo {
   static List<PageInfo> get all => [
         ...[
           CounterPage.routeName,
+          ChangeNotifierCounterPage.routeName,
           CounterDialogPage.routeName,
         ].map((rn) => PageInfo(routeName: rn)),
         PageInfo(
