@@ -25,8 +25,8 @@ class Counter extends StateNotifier<int> {
     this._ref, {
     @required this.id,
   }) : super(_ref.read(counterStorageProvider).count(id: id)) {
-    _removeListener = _dataSource.addListener((_) {
-      state = _dataSource.count(id: id);
+    _removeListener = _storage.addListener((_) {
+      state = _storage.count(id: id);
     });
   }
 
@@ -35,10 +35,10 @@ class Counter extends StateNotifier<int> {
 
   RemoveListener _removeListener;
 
-  CounterStorage get _dataSource => _ref.read(counterStorageProvider);
+  CounterStorage get _storage => _ref.read(counterStorageProvider);
 
   void increment() {
-    _dataSource.update(
+    _storage.update(
       id: id,
       count: state + 1,
     );
