@@ -28,7 +28,7 @@ class CountersPage extends HookWidget {
             key: ValueKey(id),
             overrides: [
               counterProvider.overrideAs(
-                Provider((ref) => ref.read(counterProviderFamily(id))),
+                Provider((ref) => ref.read(counterProviders(id))),
               ),
             ],
             child: _Tile(id: id),

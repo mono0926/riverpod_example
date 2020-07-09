@@ -4,6 +4,17 @@ import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:uuid/uuid.dart';
 
+final selectedIdProvider = StateProvider<String>((_) => null);
+
+typedef SelectionConsumer<T> = StateController<T> Function(
+  StateProvider<T> selectedProvider,
+);
+
+AutoDisposeStateNotifierProvider<Counter> selectedCounterProvider(
+  SelectionConsumer<String> consumer,
+) =>
+    counterProviders(consumer(selectedIdProvider).state);
+
 final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
   (_ref) {
     assert(
@@ -15,9 +26,12 @@ final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
   },
 );
 
-final counterProviderFamily =
+final counterProviders =
     AutoDisposeStateNotifierProviderFamily<Counter, String>(
-  (ref, id) => Counter(ref, id: id),
+  (ref, id) {
+    ref.onDispose(() => logger.info('onDispose(id: $id)'));
+    return Counter(ref, id: id);
+  },
 );
 
 class Counter extends StateNotifier<int> {
