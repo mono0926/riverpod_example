@@ -28,10 +28,7 @@ final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
 
 final counterProviders =
     AutoDisposeStateNotifierProviderFamily<Counter, String>(
-  (ref, id) {
-    ref.onDispose(() => logger.info('onDispose(id: $id)'));
-    return Counter(ref, id: id);
-  },
+  (ref, id) => Counter(ref, id: id),
 );
 
 class Counter extends StateNotifier<int> {
@@ -60,7 +57,7 @@ class Counter extends StateNotifier<int> {
 
   @override
   void dispose() {
-    logger.info('disposed(state: $state)');
+    logger.info('disposed(id: $id, state: $state)');
     _removeListener();
     super.dispose();
   }
