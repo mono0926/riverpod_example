@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
+final counterProvider = StateNotifierProvider.autoDispose<Counter>(
   (_ref) {
     assert(
       false,
@@ -14,7 +14,7 @@ final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
 );
 
 final counterProviderFamily =
-    AutoDisposeStateNotifierProviderFamily<Counter, int>(
+    StateNotifierProvider.autoDispose.family<Counter, int>(
   (_ref, _index) => Counter(),
 );
 

@@ -3,6 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:uuid/uuid.dart';
+// ignore: implementation_imports
+import 'package:riverpod/src/state_notifier_provider/auto_dispose_state_notifier_provider.dart';
 
 final selectedIdProvider = StateProvider<String>((_) => null);
 
@@ -15,7 +17,7 @@ AutoDisposeStateNotifierProvider<Counter> selectedCounterProvider(
 ) =>
     counterProviders(consumer(selectedIdProvider).state);
 
-final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
+final counterProvider = StateNotifierProvider.autoDispose<Counter>(
   (_ref) {
     assert(
       false,
@@ -27,7 +29,7 @@ final counterProvider = AutoDisposeStateNotifierProvider<Counter>(
 );
 
 final counterProviders =
-    AutoDisposeStateNotifierProviderFamily<Counter, String>(
+    StateNotifierProvider.autoDispose.family<Counter, String>(
   (ref, id) => Counter(ref, id: id),
 );
 
@@ -64,7 +66,7 @@ class Counter extends StateNotifier<int> {
 }
 
 final counterStorageProvider =
-    AutoDisposeStateNotifierProvider((_) => CounterStorage());
+    StateNotifierProvider.autoDispose((_) => CounterStorage());
 
 class CounterStorage extends StateNotifier<Map<String, int>> {
   CounterStorage()
