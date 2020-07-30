@@ -21,9 +21,10 @@ class CountersPage extends HookWidget {
         itemCount: 100,
         itemBuilder: (context, i) => ProviderScope(
           overrides: [
-            counterProvider.overrideAs(
-              Provider((ref) => ref.read(counterProviderFamily(i))),
-            ),
+            ProviderOverride(
+              Provider<Counter>((ref) => ref.read(counterProviderFamily(i))),
+              counterProvider,
+            )
           ],
           child: _Tile(
             index: i,
@@ -73,9 +74,12 @@ class _Tile extends HookWidget {
             // https://twitter.com/remi_rousselet/status/1278592878638436353
             builder: (context) => ProviderScope(
               overrides: [
-                counterProvider.overrideAs(
-                  Provider((ref) => ref.read(counterProviderFamily(index))),
-                ),
+                ProviderOverride(
+                  Provider<Counter>(
+                    (ref) => ref.read(counterProviderFamily(index)),
+                  ),
+                  counterProvider,
+                )
               ],
               child: const DetailPage(),
             ),

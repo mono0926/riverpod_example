@@ -8,7 +8,7 @@ void main() {
   runApp(
     const ProviderScope(
       observers: [
-        ProviderObserver(),
+        _ProviderObserver(),
       ],
       child: App(),
     ),
@@ -16,12 +16,12 @@ void main() {
 }
 
 @immutable
-class ProviderObserver implements ProviderStateOwnerObserver {
-  const ProviderObserver();
+class _ProviderObserver implements ProviderObserver {
+  const _ProviderObserver();
 
   @override
   void didAddProvider(
-    ProviderBase<ProviderDependencyBase, Object> provider,
+    ProviderBase<dynamic, dynamic> provider,
     Object value,
   ) {
     logger.info('provider: $provider, value: $value');
@@ -29,16 +29,21 @@ class ProviderObserver implements ProviderStateOwnerObserver {
 
   @override
   void didDisposeProvider(
-    ProviderBase<ProviderDependencyBase, Object> provider,
+    ProviderBase<dynamic, dynamic> provider,
   ) {
     logger.info('provider: $provider');
   }
 
   @override
   void didUpdateProvider(
-    ProviderBase<ProviderDependencyBase, Object> provider,
+    ProviderBase<dynamic, dynamic> provider,
     Object newValue,
   ) {
     logger.info('provider: $provider, newValue: $newValue');
+  }
+
+  @override
+  void mayHaveChanged(ProviderBase<dynamic, dynamic> provider) {
+    logger.info('provider: $provider');
   }
 }

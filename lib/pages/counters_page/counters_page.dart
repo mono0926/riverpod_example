@@ -27,9 +27,7 @@ class CountersPage extends HookWidget {
           return ProviderScope(
             key: ValueKey(id),
             overrides: [
-              counterProvider.overrideAs(
-                Provider((ref) => ref.read(counterProviders(id))),
-              ),
+              ProviderOverride(counterProviders(id), counterProvider),
             ],
             child: _Tile(id: id),
           );
@@ -72,7 +70,7 @@ class _Tile extends HookWidget {
         ],
       ),
       onTap: () {
-        selectedIdProvider.read(context).state = id;
+        context.read(selectedIdProvider).state = id;
         Navigator.of(context).push<void>(
           MaterialPageRoute(
             builder: (context) => const DetailPage(),

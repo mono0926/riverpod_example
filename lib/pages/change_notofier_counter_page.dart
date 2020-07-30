@@ -44,7 +44,7 @@ class ChangeNotifierCounterPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _counterProvider.read(context).increment(),
+        onPressed: () => context.read(_counterProvider).increment(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
