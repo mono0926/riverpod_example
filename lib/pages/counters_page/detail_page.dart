@@ -10,7 +10,6 @@ class DetailPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final provider = selectedCounterProvider(useProvider);
-    final controller = useProvider(provider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Detail'),
@@ -23,7 +22,7 @@ class DetailPage extends HookWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: controller.increment,
+        onPressed: context.read(provider).increment,
       ),
     );
   }

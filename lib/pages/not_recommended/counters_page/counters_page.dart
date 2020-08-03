@@ -46,7 +46,6 @@ class _Tile extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useProvider(counterProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return ListTile(
@@ -62,7 +61,7 @@ class _Tile extends HookWidget {
           IconButton(
             color: colorScheme.primary,
             icon: const Icon(Icons.add),
-            onPressed: controller.increment,
+            onPressed: context.read(counterProvider).increment,
           ),
         ],
       ),
