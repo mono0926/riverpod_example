@@ -15,10 +15,7 @@ AutoDisposeStateNotifierProvider<Counter> selectedCounterProvider(
 ) =>
     counterProviders(consumer(selectedIdProvider).state);
 
-final counterId = ScopedProvider<String>((ref) {
-  assert(false, 'Should be overridden');
-  return null;
-});
+final counterId = ScopedProvider<String>((ref) => throw UnimplementedError());
 
 final counterProviders =
     StateNotifierProvider.autoDispose.family<Counter, String>(
