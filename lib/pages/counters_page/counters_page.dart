@@ -13,17 +13,18 @@ class CountersPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ids = useProvider(
-      counterStorageProvider.state.select((s) => s.keys.toList()),
-    );
     return Scaffold(
       appBar: AppBar(
         title: Text(pascalCaseFromRouteName(routeName)),
       ),
       body: ListView.separated(
-        itemCount: ids.length,
-        itemBuilder: (context, index) {
-          final id = ids[index];
+        itemCount: useProvider(
+          counterStorageProvider.state.select((s) => s.keys.length),
+        ),
+        itemBuilder: (context, index) => HookBuilder(builder: (context) {
+          final id = useProvider(
+            counterStorageProvider.state.select((s) => s.keys.elementAt(index)),
+          );
           return ProviderScope(
             key: ValueKey(id),
             overrides: [
@@ -31,7 +32,7 @@ class CountersPage extends HookWidget {
             ],
             child: _Tile(id: id),
           );
-        },
+        }),
         separatorBuilder: (context, _) => const Divider(height: 0),
       ),
     );
