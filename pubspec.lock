@@ -7,7 +7,7 @@ packages:
       name: adaptive_dialog
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.5"
+    version: "0.7.5+3"
   animations:
     dependency: transitive
     description:
@@ -103,7 +103,7 @@ packages:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0-dev"
+    version: "0.6.0-dev+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -115,7 +115,7 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.0"
+    version: "0.11.0+1"
   gap:
     dependency: "direct main"
     description:
@@ -129,7 +129,7 @@ packages:
       name: hooks_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0-dev"
+    version: "0.6.0-dev+2"
   json_annotation:
     dependency: transitive
     description:
@@ -185,7 +185,7 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0-dev"
+    version: "0.6.0-dev+2"
   simple_logger:
     dependency: "direct main"
     description:
