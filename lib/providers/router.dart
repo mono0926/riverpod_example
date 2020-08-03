@@ -7,8 +7,6 @@ import 'package:riverpod_example/pages/change_notofier_counter_page.dart';
 import 'package:riverpod_example/pages/counter_navigation_page.dart';
 import 'package:riverpod_example/pages/counter_page.dart';
 import 'package:riverpod_example/pages/counters_page/counters_page.dart';
-import 'package:riverpod_example/pages/not_recommended/counters_page/counters_page.dart'
-    as not_recommended;
 
 final routerProvider = Provider((_) => _Router());
 
@@ -20,8 +18,6 @@ class _Router {
         const ChangeNotifierCounterPage(),
     CounterDialogPage.routeName: (_) => const CounterDialogPage(),
     CountersPage.routeName: (_) => const CountersPage(),
-    not_recommended.CountersPage.routeName: (_) =>
-        const not_recommended.CountersPage(),
   };
 
   Route onGenerateRoute(RouteSettings settings) {
@@ -57,11 +53,6 @@ class PageInfo {
           routeName: CountersPage.routeName,
           pageName: 'Counters',
           subTitle: 'Update Selection',
-        ),
-        PageInfo(
-          routeName: not_recommended.CountersPage.routeName,
-          pageName: 'Counters',
-          subTitle: 'Shared Provider, not recommended',
         ),
       ];
 }
