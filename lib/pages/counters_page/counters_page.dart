@@ -27,7 +27,7 @@ class CountersPage extends HookWidget {
           return ProviderScope(
             key: ValueKey(id),
             overrides: [
-              ProviderOverride(counterProviders(id), counterProvider),
+              counterId.overrideWithValue(id),
             ],
             child: _Tile(id: id),
           );
@@ -48,6 +48,8 @@ class _Tile extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final id = useProvider(counterId);
+    final counterProvider = counterProviders(id);
     final controller = useProvider(counterProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
