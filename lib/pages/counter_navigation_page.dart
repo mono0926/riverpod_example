@@ -71,7 +71,6 @@ class _Dialog extends HookWidget {
   const _Dialog({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final controller = useProvider(_counterProvider);
     return AlertDialog(
       title: const Text('Dialog'),
       content: Column(
@@ -90,7 +89,7 @@ class _Dialog extends HookWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 label: const Text('INCREMENT'),
-                onPressed: controller.increment,
+                onPressed: context.read(_counterProvider).increment,
               ),
             ],
           ),

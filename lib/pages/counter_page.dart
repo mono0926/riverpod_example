@@ -27,7 +27,7 @@ class CounterPage extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _counterProvider.read(context).state++,
+        onPressed: () => context.read(_counterProvider).state++,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

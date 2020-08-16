@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final _counterProvider = ChangeNotifierProvider((ref) => _CountNotifier());
+final _counterProvider = ChangeNotifierProvider.autoDispose(
+  (ref) => _CountNotifier(),
+);
 
 class _CountNotifier with ChangeNotifier {
   var _count = 0;
@@ -39,29 +40,14 @@ class ChangeNotifierCounterPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
-            const _NotRebuiltCount(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _counterProvider.read(context).increment(),
+        onPressed: () => context.read(_counterProvider).increment(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-    );
-  }
-}
-
-class _NotRebuiltCount extends HookWidget {
-  const _NotRebuiltCount({Key key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    // Get controller(ChangeNotifier) without pointless rebuild
-    final controller = useProvider(_counterProvider.select((s) => s));
-    return Text(
-      // Don't do this!
-      '${controller.count}',
-      style: Theme.of(context).textTheme.headline4,
     );
   }
 }

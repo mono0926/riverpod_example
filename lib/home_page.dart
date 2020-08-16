@@ -51,7 +51,7 @@ class _PopupMenuButton extends HookWidget {
       onSelected: (menu) async {
         switch (menu) {
           case _Menu.theme:
-            themeProvider.read(context).showThemeSelection();
+            context.read(themeProvider).showThemeSelection();
             break;
         }
       },
