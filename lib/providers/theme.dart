@@ -8,16 +8,17 @@ import 'package:state_notifier/state_notifier.dart';
 final lightTheme = ThemeData.from(colorScheme: const ColorScheme.light());
 final darkTheme = ThemeData.from(colorScheme: const ColorScheme.dark());
 
-final themeProvider = StateNotifierProvider((ref) => _ThemeController(ref));
+final themeProvider =
+    StateNotifierProvider((ref) => _ThemeController(ref.read));
 
 class _ThemeController extends StateNotifier<ThemeMode> {
-  _ThemeController(this._ref) : super(ThemeMode.system);
+  _ThemeController(this._read) : super(ThemeMode.system);
 
-  final ProviderReference _ref;
+  final Reader _read;
 
   Future<void> showThemeSelection() async {
     state = await showModalActionSheet(
-      context: _ref.read(navigatorKeyProvider).currentState.descendantContext,
+      context: _read(navigatorKeyProvider).currentState.descendantContext,
       title: 'Theme',
       message: 'Current: ${describeEnum(state)}',
       actions: ThemeMode.values

@@ -19,25 +19,25 @@ final counterId = ScopedProvider<String>((ref) => throw UnimplementedError());
 
 final counterProviders =
     StateNotifierProvider.autoDispose.family<Counter, String>(
-  (ref, id) => Counter(ref, id: id),
+  (ref, id) => Counter(ref.read, id: id),
 );
 
 class Counter extends StateNotifier<int> {
   Counter(
-    this._ref, {
+    this._read, {
     @required this.id,
-  }) : super(_ref.read(counterStorageProvider).count(id: id)) {
+  }) : super(_read(counterStorageProvider).count(id: id)) {
     _removeListener = _storage.addListener((_) {
       state = _storage.count(id: id);
     });
   }
 
-  final ProviderReference _ref;
+  final Reader _read;
   final String id;
 
   RemoveListener _removeListener;
 
-  CounterStorage get _storage => _ref.read(counterStorageProvider);
+  CounterStorage get _storage => _read(counterStorageProvider);
 
   void increment() {
     _storage.update(
