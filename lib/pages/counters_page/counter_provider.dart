@@ -6,14 +6,9 @@ import 'package:uuid/uuid.dart';
 
 final selectedIdProvider = StateProvider<String>((_) => null);
 
-typedef SelectionConsumer<T> = StateController<T> Function(
-  StateProvider<T> selectedProvider,
-);
-
 AutoDisposeStateNotifierProvider<Counter> selectedCounterProvider(
-  SelectionConsumer<String> consumer,
-) =>
-    counterProviders(consumer(selectedIdProvider).state);
+        Reader read) =>
+    counterProviders(read(selectedIdProvider).state);
 
 final counterId = ScopedProvider<String>((ref) => throw UnimplementedError());
 
