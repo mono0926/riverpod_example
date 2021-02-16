@@ -83,7 +83,7 @@ class _Dialog extends HookWidget {
             children: [
               const _CountText(),
               const Gap(16),
-              RaisedButton.icon(
+              ElevatedButton.icon(
                 icon: Icon(
                   Icons.add,
                   color: Theme.of(context).colorScheme.primary,
@@ -96,7 +96,7 @@ class _Dialog extends HookWidget {
         ],
       ),
       actions: [
-        FlatButton(
+        TextButton(
           child: Text(MaterialLocalizations.of(context).closeButtonLabel),
           onPressed: Navigator.of(context).pop,
         ),

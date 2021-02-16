@@ -35,8 +35,8 @@ class ChangeNotifierCounterPage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             Consumer(
-              (context, read) => Text(
-                '${read(_counterProvider).count}',
+              builder: (context, watch, child) => Text(
+                '${watch(_counterProvider).count}',
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),

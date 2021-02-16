@@ -7,16 +7,16 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  adaptive_dialog:
+  cupertino_icons:
   flutter:
     sdk: flutter
-  cupertino_icons:
-  hooks_riverpod:
   flutter_hooks:
-  adaptive_dialog:
-  state_notifier:
-  recase:
   gap:
+  hooks_riverpod:
+  recase:
   simple_logger:
+  state_notifier:
   uuid:
 
 dev_dependencies:
