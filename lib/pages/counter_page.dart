@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final _counterProvider = StateProvider((ref) => 0);
 
 class CounterPage extends HookWidget {
-  const CounterPage({Key key}) : super(key: key);
+  const CounterPage({Key? key}) : super(key: key);
 
   static const routeName = '/counter';
 
@@ -36,7 +36,7 @@ class CounterPage extends HookWidget {
 }
 
 class _Counter extends HookWidget {
-  const _Counter({Key key}) : super(key: key);
+  const _Counter({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Text(

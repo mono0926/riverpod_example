@@ -22,7 +22,7 @@ class _ProviderObserver implements ProviderObserver {
   @override
   void didAddProvider(
     ProviderBase<dynamic, dynamic> provider,
-    Object value,
+    Object? value,
   ) {
     logger.info('provider: $provider, value: $value');
   }
@@ -37,7 +37,7 @@ class _ProviderObserver implements ProviderObserver {
   @override
   void didUpdateProvider(
     ProviderBase<dynamic, dynamic> provider,
-    Object newValue,
+    Object? newValue,
   ) {
     logger.info('provider: $provider, newValue: $newValue');
   }

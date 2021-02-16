@@ -57,20 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  convert:
-    dependency: transitive
-    description:
-      name: convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   crypto:
     dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "3.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -96,14 +89,14 @@ packages:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.15.0"
+    version: "0.16.0-nullsafety.0"
   flutter_riverpod:
     dependency: transitive
     description:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.4"
+    version: "0.13.0-nullsafety.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -115,28 +108,28 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0"
+    version: "0.13.0-nullsafety.0"
   gap:
     dependency: "direct main"
     description:
       name: gap
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "2.0.0-nullsafety.1"
   hooks_riverpod:
     dependency: "direct main"
     description:
       name: hooks_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.4"
+    version: "0.13.0-nullsafety.3"
   json_annotation:
     dependency: transitive
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "4.0.0"
   logging:
     dependency: transitive
     description:
@@ -178,14 +171,14 @@ packages:
       name: recase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "4.0.0-nullsafety.0"
   riverpod:
     dependency: transitive
     description:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.4"
+    version: "0.13.0-nullsafety.3"
   simple_logger:
     dependency: "direct main"
     description:
@@ -218,7 +211,7 @@ packages:
       name: state_notifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0"
+    version: "0.7.0-nullsafety.0"
   stream_channel:
     dependency: transitive
     description:
@@ -260,7 +253,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.2"
+    version: "3.0.0-nullsafety.1"
   vector_math:
     dependency: transitive
     description:
@@ -269,5 +262,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
+  dart: ">=2.12.0-133.2.beta <3.0.0"
   flutter: ">=1.20.0"

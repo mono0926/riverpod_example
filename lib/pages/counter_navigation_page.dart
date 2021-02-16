@@ -22,7 +22,7 @@ class _Counter extends StateNotifier<int> {
 }
 
 class CounterDialogPage extends HookWidget {
-  const CounterDialogPage({Key key}) : super(key: key);
+  const CounterDialogPage({Key? key}) : super(key: key);
 
   static const routeName = '/counter_dialog';
 
@@ -57,7 +57,7 @@ class CounterDialogPage extends HookWidget {
 }
 
 class _CountText extends HookWidget {
-  const _CountText({Key key}) : super(key: key);
+  const _CountText({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -68,7 +68,7 @@ class _CountText extends HookWidget {
 }
 
 class _Dialog extends HookWidget {
-  const _Dialog({Key key}) : super(key: key);
+  const _Dialog({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

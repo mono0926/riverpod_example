@@ -8,7 +8,7 @@ import 'package:riverpod_example/providers/providers.dart';
 import 'providers/providers.dart';
 
 class HomePage extends HookWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   static const routeName = '/';
 
@@ -24,9 +24,10 @@ class HomePage extends HookWidget {
       body: ListView(
         children: [
           ...PageInfo.all.map((info) {
+            final subTitle = info.subTitle;
             return ListTile(
               title: Text(info.pageName),
-              subtitle: info.subTitle == null ? null : Text(info.subTitle),
+              subtitle: subTitle == null ? null : Text(subTitle),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => Navigator.of(context).pushNamed(info.routeName),
             );
@@ -38,7 +39,7 @@ class HomePage extends HookWidget {
 }
 
 class _PopupMenuButton extends HookWidget {
-  const _PopupMenuButton({Key key}) : super(key: key);
+  const _PopupMenuButton({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<_Menu>(

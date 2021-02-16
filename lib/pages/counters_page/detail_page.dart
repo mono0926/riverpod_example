@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'counter_provider.dart';
 
 class DetailPage extends HookWidget {
-  const DetailPage({Key key}) : super(key: key);
+  const DetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

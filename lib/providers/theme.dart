@@ -17,8 +17,8 @@ class _ThemeController extends StateNotifier<ThemeMode> {
   final Reader _read;
 
   Future<void> showThemeSelection() async {
-    state = await showModalActionSheet(
-      context: _read(navigatorKeyProvider).currentState.descendantContext,
+    state = (await showModalActionSheet(
+      context: _read(navigatorKeyProvider).currentState!.descendantContext,
       title: 'Theme',
       message: 'Current: ${describeEnum(state)}',
       actions: ThemeMode.values
@@ -27,6 +27,6 @@ class _ThemeController extends StateNotifier<ThemeMode> {
                 key: mode,
               ))
           .toList(),
-    );
+    ))!;
   }
 }

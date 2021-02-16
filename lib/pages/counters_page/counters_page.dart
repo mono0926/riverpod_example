@@ -8,7 +8,7 @@ import 'counter_provider.dart';
 import 'detail_page.dart';
 
 class CountersPage extends HookWidget {
-  const CountersPage({Key key}) : super(key: key);
+  const CountersPage({Key? key}) : super(key: key);
 
   static const routeName = '/counters';
 
@@ -40,7 +40,7 @@ class CountersPage extends HookWidget {
 }
 
 class _Tile extends HookWidget {
-  const _Tile({Key key}) : super(key: key);
+  const _Tile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

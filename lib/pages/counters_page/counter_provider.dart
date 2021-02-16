@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:uuid/uuid.dart';
 
-final selectedIdProvider = StateProvider<String>((_) => null);
+final selectedIdProvider = StateProvider<String>((_) => '');
 
 AutoDisposeStateNotifierProvider<Counter> selectedCounterProvider(
         Reader read) =>
@@ -20,7 +19,7 @@ final counterProviders =
 class Counter extends StateNotifier<int> {
   Counter(
     this._read, {
-    @required this.id,
+    required this.id,
   }) : super(_read(counterStorageProvider).count(id: id)) {
     _removeListener = _storage.addListener((_) {
       state = _storage.count(id: id);
@@ -30,7 +29,7 @@ class Counter extends StateNotifier<int> {
   final Reader _read;
   final String id;
 
-  RemoveListener _removeListener;
+  late RemoveListener _removeListener;
 
   CounterStorage get _storage => _read(counterStorageProvider);
 
@@ -65,13 +64,13 @@ class CounterStorage extends StateNotifier<Map<String, int>> {
           ),
         );
 
-  static final _uuid = Uuid();
+  static const _uuid = Uuid();
 
-  int count({@required String id}) => state[id];
+  int count({required String id}) => state[id]!;
 
   void update({
-    @required String id,
-    @required int count,
+    required String id,
+    required int count,
   }) {
     state = {
       ...state,
