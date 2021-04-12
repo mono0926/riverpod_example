@@ -15,7 +15,7 @@ class CountersPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ids = useProvider(
-      counterStorageProvider.state.select((s) => s.keys.toList()),
+      counterStorageProvider.select((s) => s.keys.toList()),
     );
     return Scaffold(
       appBar: AppBar(
@@ -56,14 +56,14 @@ class _Tile extends HookWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '${useProvider(counterProvider.state.select((s) => s))}',
+            '${useProvider(counterProvider.select((s) => s))}',
             style: Theme.of(context).textTheme.subtitle1,
           ),
           const SizedBox(width: 16),
           IconButton(
             color: colorScheme.primary,
             icon: const Icon(Icons.add),
-            onPressed: context.read(counterProvider).increment,
+            onPressed: context.read(counterProvider.notifier).increment,
           ),
         ],
       ),

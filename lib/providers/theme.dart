@@ -8,8 +8,9 @@ import 'package:state_notifier/state_notifier.dart';
 final lightTheme = ThemeData.from(colorScheme: const ColorScheme.light());
 final darkTheme = ThemeData.from(colorScheme: const ColorScheme.dark());
 
-final themeProvider =
-    StateNotifierProvider((ref) => _ThemeController(ref.read));
+final themeProvider = StateNotifierProvider<_ThemeController, ThemeMode>(
+  (ref) => _ThemeController(ref.read),
+);
 
 class _ThemeController extends StateNotifier<ThemeMode> {
   _ThemeController(this._read) : super(ThemeMode.system);

@@ -16,13 +16,13 @@ class DetailPage extends HookWidget {
       ),
       body: Center(
         child: Text(
-          'count: ${useProvider(provider.state)}',
+          'count: ${useProvider(provider)}',
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: context.read(provider).increment,
+        onPressed: context.read(provider.notifier).increment,
       ),
     );
   }

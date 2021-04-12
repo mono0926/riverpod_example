@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-final _counterProvider = StateNotifierProvider.autoDispose<_Counter>(
+final _counterProvider = StateNotifierProvider.autoDispose<_Counter, int>(
   (_ref) => _Counter(),
 );
 
@@ -61,7 +61,7 @@ class _CountText extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${useProvider(_counterProvider.state)}',
+      '${useProvider(_counterProvider)}',
       style: Theme.of(context).textTheme.headline4,
     );
   }
@@ -89,7 +89,7 @@ class _Dialog extends HookWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 label: const Text('INCREMENT'),
-                onPressed: context.read(_counterProvider).increment,
+                onPressed: context.read(_counterProvider.notifier).increment,
               ),
             ],
           ),

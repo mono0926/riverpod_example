@@ -5,14 +5,14 @@ import 'package:uuid/uuid.dart';
 
 final selectedIdProvider = StateProvider<String>((_) => '');
 
-AutoDisposeStateNotifierProvider<Counter> selectedCounterProvider(
+AutoDisposeStateNotifierProvider<Counter, int> selectedCounterProvider(
         Reader read) =>
     counterProviders(read(selectedIdProvider).state);
 
 final counterId = ScopedProvider<String>((ref) => throw UnimplementedError());
 
 final counterProviders =
-    StateNotifierProvider.autoDispose.family<Counter, String>(
+    StateNotifierProvider.autoDispose.family<Counter, int, String>(
   (ref, id) => Counter(ref.read, id: id),
 );
 
@@ -20,7 +20,7 @@ class Counter extends StateNotifier<int> {
   Counter(
     this._read, {
     required this.id,
-  }) : super(_read(counterStorageProvider).count(id: id)) {
+  }) : super(_read(counterStorageProvider.notifier).count(id: id)) {
     _removeListener = _storage.addListener((_) {
       state = _storage.count(id: id);
     });
@@ -31,7 +31,7 @@ class Counter extends StateNotifier<int> {
 
   late RemoveListener _removeListener;
 
-  CounterStorage get _storage => _read(counterStorageProvider);
+  CounterStorage get _storage => _read(counterStorageProvider.notifier);
 
   void increment() {
     _storage.update(
@@ -49,7 +49,9 @@ class Counter extends StateNotifier<int> {
 }
 
 final counterStorageProvider =
-    StateNotifierProvider.autoDispose((_) => CounterStorage());
+    StateNotifierProvider.autoDispose<CounterStorage, Map<String, int>>(
+  (_) => CounterStorage(),
+);
 
 class CounterStorage extends StateNotifier<Map<String, int>> {
   CounterStorage()

@@ -11,7 +11,7 @@ class App extends HookWidget {
       title: useProvider(titleProvider),
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: useProvider(themeProvider.state),
+      themeMode: useProvider(themeProvider),
       navigatorKey: useProvider(navigatorKeyProvider),
       onGenerateRoute: useProvider(routerProvider).onGenerateRoute,
     );
