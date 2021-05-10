@@ -173,10 +173,10 @@ void main() {
 
   test('Immutable mutable list', () {
     final x1 = Immutable4([1, 2]);
-    final x = x1;
+    final x2 = x1;
     x1.values.clear();
     print(x1); // values: []
-    print(x); // values: []
+    print(x2); // values: []
   });
   test('lImmutable mutable unmodified list', () {
     final x1 = Immutable4(UnmodifiableListView([1, 2]));
