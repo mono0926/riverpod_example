@@ -67,7 +67,7 @@ void main() {
     // x2とx1の参照先は同一なのでx1のvalueが変更されるとm2も変更される
     expect(x2.value, 2);
     expect(x1 == x2, isTrue);
-    expect(identityHashCode(x1) == identityHashCode(x2), isTrue);
+    expect(identical(x1, x2), isTrue);
   });
 
   test('immutable', () {
@@ -83,17 +83,17 @@ void main() {
     // x1を変更したわけではなく再生成したのでx2のvalueは元のまま
     expect(x2.value, 1);
     // 参照も違う
-    expect(identityHashCode(x1) == identityHashCode(x2), isFalse);
+    expect(identical(x1, x2), isFalse);
   });
 
   test('immutable const', () {
     final x1 = Immutable2(1);
     final x2 = Immutable2(1);
-    expect(identityHashCode(x1) == identityHashCode(x2), isFalse);
+    expect(identical(x1, x2), isFalse);
 
     const x3 = Immutable2(1);
     const x4 = Immutable2(1);
-    expect(identityHashCode(x3) == identityHashCode(x4), isTrue);
+    expect(identical(x3, x4), isTrue);
   });
 
   test('immutable freezed', () {
@@ -107,7 +107,7 @@ void main() {
     x1 = x1.copyWith(value: x1.value + 1);
     expect(x1.value, 2);
     expect(x2.value, 1);
-    expect(identityHashCode(x1) == identityHashCode(x2), isFalse);
+    expect(identical(x1, x2), isFalse);
   });
 
   test('list mutable', () {
@@ -183,7 +183,7 @@ void main() {
     final x1 = Immutable4(UnmodifiableListView([1, 2]));
     final x2 = x1;
     // 実行時エラー(Unsupported operation: Cannot clear an unmodifiable list)
-    x1.values.clear();
+    // x1.values.clear();
   });
 
   test('collection operation List', () {
