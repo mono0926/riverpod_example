@@ -178,6 +178,7 @@ void main() {
     print(x1); // values: []
     print(x2); // values: []
   });
+
   test('lImmutable mutable unmodified list', () {
     final x1 = Immutable4(UnmodifiableListView([1, 2]));
     final x2 = x1;
@@ -223,7 +224,19 @@ void main() {
   });
 }
 
-// UnmodifiableListView
-// const
-// StateNotifier
-// ChangeNotifier
+class FooNotifier extends StateNotifier<Immutable4> {
+  FooNotifier() : super(const Immutable4([]));
+
+  void add(int value) {
+    state = state.copyWith(
+      // 2. 外から `state.values`に対して直接mutate操作されることも防ぐ
+      values: UnmodifiableListView(
+        // 1. シャローコピーで元のvaluesと相互に変更の影響を受けないようにする
+        [
+          ...state.values,
+          value,
+        ],
+      ),
+    );
+  }
+}
