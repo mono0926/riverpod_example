@@ -165,7 +165,7 @@ void main() {
     final list2 = list1;
     list1 = List.of(list1);
     list1[0].clear();
-    // list2自体に触れずにその変更をすることは不可能
+    // list2自体に触れずにその変更をできてしまう
     print(list1); // [[], [value: 2]]
     print(list2); // [[], [value: 2]]
     expect(list1 == list2, isFalse);
