@@ -201,11 +201,11 @@ void main() {
   test('collection operation Set', () {
     final x1 = {1, 2};
     final x2 = Set.of(x1)..add(2)..add(3);
-    final x3 = [
+    final x3 = {
       ...x1,
       2,
       3,
-    ];
+    };
     expect(x1, {1, 2});
     expect(x2, {1, 2, 3});
     expect(x3, {1, 2, 3});
