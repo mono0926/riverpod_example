@@ -96,6 +96,15 @@ void main() {
     expect(identical(x3, x4), isTrue);
   });
 
+  test('const list', () {
+    final x1 = <int>[];
+    x1.add(1);
+
+    // Unsupported operation: Cannot add to an unmodifiable list
+    const x2 = <int>[];
+    x2.add(1);
+  });
+
   test('immutable freezed', () {
     var x1 = const Immutable3(1);
     final x2 = x1;
