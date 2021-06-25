@@ -16,13 +16,13 @@ class _CountNotifier with ChangeNotifier {
   }
 }
 
-class ChangeNotifierCounterPage extends StatelessWidget {
+class ChangeNotifierCounterPage extends ConsumerWidget {
   const ChangeNotifierCounterPage({Key? key}) : super(key: key);
 
   static const routeName = '/change_notifier_counter';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
@@ -35,8 +35,8 @@ class ChangeNotifierCounterPage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             Consumer(
-              builder: (context, watch, child) => Text(
-                '${watch(_counterProvider).count}',
+              builder: (context, ref, child) => Text(
+                '${ref.watch(_counterProvider).count}',
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
@@ -44,7 +44,7 @@ class ChangeNotifierCounterPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read(_counterProvider).increment(),
+        onPressed: () => ref.read(_counterProvider).increment(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

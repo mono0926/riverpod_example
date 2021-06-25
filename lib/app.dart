@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/providers/providers.dart';
 
-class App extends HookWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: useProvider(titleProvider),
+      title: ref.watch(titleProvider),
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: useProvider(themeProvider),
-      navigatorKey: useProvider(navigatorKeyProvider),
-      onGenerateRoute: useProvider(routerProvider).onGenerateRoute,
+      themeMode: ref.watch(themeProvider),
+      navigatorKey: ref.watch(navigatorKeyProvider),
+      onGenerateRoute: ref.watch(routerProvider).onGenerateRoute,
     );
   }
 }

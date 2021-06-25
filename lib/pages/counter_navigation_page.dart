@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
@@ -21,13 +20,13 @@ class _Counter extends StateNotifier<int> {
   }
 }
 
-class CounterDialogPage extends HookWidget {
+class CounterDialogPage extends ConsumerWidget {
   const CounterDialogPage({Key? key}) : super(key: key);
 
   static const routeName = '/counter_dialog';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
@@ -56,21 +55,21 @@ class CounterDialogPage extends HookWidget {
   }
 }
 
-class _CountText extends HookWidget {
+class _CountText extends ConsumerWidget {
   const _CountText({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Text(
-      '${useProvider(_counterProvider)}',
+      '${ref.watch(_counterProvider)}',
       style: Theme.of(context).textTheme.headline4,
     );
   }
 }
 
-class _Dialog extends HookWidget {
+class _Dialog extends ConsumerWidget {
   const _Dialog({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
       title: const Text('Dialog'),
       content: Column(
@@ -89,7 +88,7 @@ class _Dialog extends HookWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 label: const Text('INCREMENT'),
-                onPressed: context.read(_counterProvider.notifier).increment,
+                onPressed: ref.read(_counterProvider.notifier).increment,
               ),
             ],
           ),

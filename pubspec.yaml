@@ -11,10 +11,9 @@ dependencies:
   cupertino_icons:
   flutter:
     sdk: flutter
-  flutter_hooks:
   freezed_annotation:
   gap:
-  hooks_riverpod:
+  hooks_riverpod: '>=1.0.0-0'
   recase:
   simple_logger:
   state_notifier:

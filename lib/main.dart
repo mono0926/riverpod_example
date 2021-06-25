@@ -21,7 +21,7 @@ class _ProviderObserver implements ProviderObserver {
 
   @override
   void didAddProvider(
-    ProviderBase<dynamic, dynamic> provider,
+    ProviderBase provider,
     Object? value,
   ) {
     logger.info('provider: $provider, value: $value');
@@ -29,21 +29,17 @@ class _ProviderObserver implements ProviderObserver {
 
   @override
   void didDisposeProvider(
-    ProviderBase<dynamic, dynamic> provider,
+    ProviderBase provider,
   ) {
     logger.info('provider: $provider');
   }
 
   @override
   void didUpdateProvider(
-    ProviderBase<dynamic, dynamic> provider,
+    ProviderBase provider,
+    Object? previousValue,
     Object? newValue,
   ) {
     logger.info('provider: $provider, newValue: $newValue');
-  }
-
-  @override
-  void mayHaveChanged(ProviderBase<dynamic, dynamic> provider) {
-    logger.info('provider: $provider');
   }
 }

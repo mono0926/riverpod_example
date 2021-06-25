@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/providers/providers.dart';
 import 'package:riverpod_example/util/logger.dart';
@@ -7,14 +6,14 @@ import 'package:riverpod_example/util/logger.dart';
 import 'counter_provider.dart';
 import 'detail_page.dart';
 
-class CountersPage extends HookWidget {
+class CountersPage extends ConsumerWidget {
   const CountersPage({Key? key}) : super(key: key);
 
   static const routeName = '/counters';
 
   @override
-  Widget build(BuildContext context) {
-    final ids = useProvider(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ids = ref.watch(
       counterStorageProvider.select((s) => s.keys.toList()),
     );
     return Scaffold(
@@ -39,12 +38,12 @@ class CountersPage extends HookWidget {
   }
 }
 
-class _Tile extends HookWidget {
+class _Tile extends ConsumerWidget {
   const _Tile({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final id = useProvider(counterId);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final id = ref.watch(counterId);
     logger.info('id: $id');
     final counterProvider = counterProviders(id);
     final theme = Theme.of(context);
@@ -56,19 +55,19 @@ class _Tile extends HookWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '${useProvider(counterProvider.select((s) => s))}',
+            '${ref.watch(counterProvider.select((s) => s))}',
             style: Theme.of(context).textTheme.subtitle1,
           ),
           const SizedBox(width: 16),
           IconButton(
             color: colorScheme.primary,
             icon: const Icon(Icons.add),
-            onPressed: context.read(counterProvider.notifier).increment,
+            onPressed: ref.read(counterProvider.notifier).increment,
           ),
         ],
       ),
       onTap: () {
-        context.read(selectedIdProvider).state = id;
+        ref.read(selectedIdProvider).state = id;
         Navigator.of(context).push<void>(
           MaterialPageRoute(
             builder: (context) => const DetailPage(),

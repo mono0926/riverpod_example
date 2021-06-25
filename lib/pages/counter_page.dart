@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final _counterProvider = StateProvider((ref) => 0);
 
-class CounterPage extends HookWidget {
+class CounterPage extends ConsumerWidget {
   const CounterPage({Key? key}) : super(key: key);
 
   static const routeName = '/counter';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
@@ -27,7 +26,7 @@ class CounterPage extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read(_counterProvider).state++,
+        onPressed: () => ref.read(_counterProvider).state++,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
@@ -35,12 +34,12 @@ class CounterPage extends HookWidget {
   }
 }
 
-class _Counter extends HookWidget {
+class _Counter extends ConsumerWidget {
   const _Counter({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Text(
-      '${useProvider(_counterProvider).state}',
+      '${ref.watch(_counterProvider).state}',
       style: Theme.of(context).textTheme.headline4,
     );
   }
