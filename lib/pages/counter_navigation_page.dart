@@ -97,8 +97,8 @@ class _Dialog extends HookWidget {
       ),
       actions: [
         TextButton(
-          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
           onPressed: Navigator.of(context).pop,
+          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
         ),
       ],
     );

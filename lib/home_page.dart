@@ -49,7 +49,7 @@ class _PopupMenuButton extends HookWidget {
                 child: Text(describeEnum(menu)),
               ))
           .toList(),
-      onSelected: (menu) async {
+      onSelected: (menu) {
         switch (menu) {
           case _Menu.theme:
             context.read(themeProvider.notifier).showThemeSelection();

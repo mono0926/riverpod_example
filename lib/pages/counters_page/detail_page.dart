@@ -21,8 +21,8 @@ class DetailPage extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
         onPressed: context.read(provider.notifier).increment,
+        child: const Icon(Icons.add),
       ),
     );
   }
