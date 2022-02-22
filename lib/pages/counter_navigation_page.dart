@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
-import 'package:state_notifier/state_notifier.dart';
 
 final _counterProvider = StateNotifierProvider.autoDispose<_Counter, int>(
   (_ref) => _Counter(),

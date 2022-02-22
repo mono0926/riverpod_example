@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
-import 'package:state_notifier/state_notifier.dart';
 import 'package:uuid/uuid.dart';
 
 final selectedIdProvider = StateProvider<String>((_) => '');

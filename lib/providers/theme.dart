@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/providers/providers.dart';
-import 'package:state_notifier/state_notifier.dart';
 
 final lightTheme = ThemeData.from(colorScheme: const ColorScheme.light());
 final darkTheme = ThemeData.from(colorScheme: const ColorScheme.dark());
