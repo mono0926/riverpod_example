@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   freezed_annotation:
   gap:
-  hooks_riverpod: '>=1.0.0-0'
+  hooks_riverpod:
   recase:
   simple_logger:
   state_notifier:

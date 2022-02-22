@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'test.dart';
 
@@ -120,14 +122,14 @@ class _$_Immutable3 with DiagnosticableTreeMixin implements _Immutable3 {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Immutable3 &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is _Immutable3 &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
@@ -139,7 +141,7 @@ abstract class _Immutable3 implements Immutable3 {
   const factory _Immutable3(int value) = _$_Immutable3;
 
   @override
-  int get value => throw _privateConstructorUsedError;
+  int get value;
   @override
   @JsonKey(ignore: true)
   _$Immutable3CopyWith<_Immutable3> get copyWith =>
@@ -254,14 +256,14 @@ class _$_Immutable4 with DiagnosticableTreeMixin implements _Immutable4 {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Immutable4 &&
-            (identical(other.values, values) ||
-                const DeepCollectionEquality().equals(other.values, values)));
+        (other.runtimeType == runtimeType &&
+            other is _Immutable4 &&
+            const DeepCollectionEquality().equals(other.values, values));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(values);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(values));
 
   @JsonKey(ignore: true)
   @override
@@ -273,7 +275,7 @@ abstract class _Immutable4 implements Immutable4 {
   const factory _Immutable4(List<int> values) = _$_Immutable4;
 
   @override
-  List<int> get values => throw _privateConstructorUsedError;
+  List<int> get values;
   @override
   @JsonKey(ignore: true)
   _$Immutable4CopyWith<_Immutable4> get copyWith =>
@@ -400,14 +402,14 @@ class _$_Immutable5 with DiagnosticableTreeMixin implements _Immutable5 {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Immutable5 &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is _Immutable5 &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
@@ -419,7 +421,7 @@ abstract class _Immutable5 implements Immutable5 {
   const factory _Immutable5(Immutable4 value) = _$_Immutable5;
 
   @override
-  Immutable4 get value => throw _privateConstructorUsedError;
+  Immutable4 get value;
   @override
   @JsonKey(ignore: true)
   _$Immutable5CopyWith<_Immutable5> get copyWith =>
