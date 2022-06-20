@@ -1,4 +1,6 @@
 // ignore_for_file: type=lint, unused_local_variable
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

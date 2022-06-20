@@ -7,7 +7,7 @@ import 'package:riverpod_example/providers/providers.dart';
 import 'providers/providers.dart';
 
 class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   static const routeName = '/';
 
@@ -38,7 +38,7 @@ class HomePage extends ConsumerWidget {
 }
 
 class _PopupMenuButton extends ConsumerWidget {
-  const _PopupMenuButton({Key? key}) : super(key: key);
+  const _PopupMenuButton();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PopupMenuButton<_Menu>(

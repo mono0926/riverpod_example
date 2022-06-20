@@ -7,7 +7,7 @@ import 'counter_provider.dart';
 import 'detail_page.dart';
 
 class CountersPage extends ConsumerWidget {
-  const CountersPage({Key? key}) : super(key: key);
+  const CountersPage({super.key});
 
   static const routeName = '/counters';
 
@@ -39,7 +39,7 @@ class CountersPage extends ConsumerWidget {
 }
 
 class _Tile extends ConsumerWidget {
-  const _Tile({Key? key}) : super(key: key);
+  const _Tile();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

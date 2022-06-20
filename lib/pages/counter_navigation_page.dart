@@ -20,7 +20,7 @@ class _Counter extends StateNotifier<int> {
 }
 
 class CounterDialogPage extends ConsumerWidget {
-  const CounterDialogPage({Key? key}) : super(key: key);
+  const CounterDialogPage({super.key});
 
   static const routeName = '/counter_dialog';
 
@@ -55,7 +55,7 @@ class CounterDialogPage extends ConsumerWidget {
 }
 
 class _CountText extends ConsumerWidget {
-  const _CountText({Key? key}) : super(key: key);
+  const _CountText();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Text(
@@ -66,7 +66,7 @@ class _CountText extends ConsumerWidget {
 }
 
 class _Dialog extends ConsumerWidget {
-  const _Dialog({Key? key}) : super(key: key);
+  const _Dialog();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(

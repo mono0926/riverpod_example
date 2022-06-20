@@ -17,7 +17,7 @@ class _CountNotifier with ChangeNotifier {
 }
 
 class ChangeNotifierCounterPage extends ConsumerWidget {
-  const ChangeNotifierCounterPage({Key? key}) : super(key: key);
+  const ChangeNotifierCounterPage({super.key});
 
   static const routeName = '/change_notifier_counter';
 

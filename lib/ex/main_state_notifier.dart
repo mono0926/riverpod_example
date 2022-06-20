@@ -28,7 +28,7 @@ class _Controller extends StateNotifier<Mutable> {
 }
 
 class _App extends StatelessWidget {
-  const _App({Key? key}) : super(key: key);
+  const _App();
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -38,7 +38,7 @@ class _App extends StatelessWidget {
 }
 
 class _Home extends ConsumerWidget {
-  const _Home({Key? key}) : super(key: key);
+  const _Home();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(_controller.notifier);

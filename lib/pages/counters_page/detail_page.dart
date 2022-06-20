@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'counter_provider.dart';
 
 class DetailPage extends ConsumerWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  const DetailPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
