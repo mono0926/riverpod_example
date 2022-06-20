@@ -43,14 +43,13 @@ class _Tile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final id = ref.watch(counterId);
-    logger.info('id: $id');
-    final counterProvider = counterProviders(id);
+    final notifier = ref.watch(counterProvider.notifier);
+    logger.info('id: ${notifier.id}');
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return ListTile(
       title: const Text('Counter'),
-      subtitle: Text(id),
+      subtitle: Text(notifier.id),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -62,15 +61,17 @@ class _Tile extends ConsumerWidget {
           IconButton(
             color: colorScheme.primary,
             icon: const Icon(Icons.add),
-            onPressed: ref.read(counterProvider.notifier).increment,
+            onPressed: notifier.increment,
           ),
         ],
       ),
       onTap: () {
-        ref.read(selectedIdProvider.notifier).update((_) => id);
         Navigator.of(context).push<void>(
           MaterialPageRoute(
-            builder: (context) => const DetailPage(),
+            builder: (routeContext) => ProviderScope(
+              parent: ProviderScope.containerOf(context),
+              child: const DetailPage(),
+            ),
           ),
         );
       },

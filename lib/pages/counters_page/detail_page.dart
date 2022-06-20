@@ -8,19 +8,18 @@ class DetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = selectedCounterProvider(ref.watch);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Detail'),
       ),
       body: Center(
         child: Text(
-          'count: ${ref.watch(provider)}',
+          'count: ${ref.watch(counterProvider)}',
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ref.read(provider.notifier).increment,
+        onPressed: ref.read(counterProvider.notifier).increment,
         child: const Icon(Icons.add),
       ),
     );

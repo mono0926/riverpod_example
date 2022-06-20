@@ -2,18 +2,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 import 'package:uuid/uuid.dart';
 
-final selectedIdProvider = StateProvider<String>((_) => '');
-
-AutoDisposeStateNotifierProvider<Counter, int> selectedCounterProvider(
-  Reader read,
-) =>
-    counterProviders(read(selectedIdProvider));
-
 final counterId = Provider<String>((ref) => throw UnimplementedError());
 
-final counterProviders =
-    StateNotifierProvider.autoDispose.family<Counter, int, String>(
-  (ref, id) => Counter(ref.read, id: id),
+final counterProvider = StateNotifierProvider.autoDispose<Counter, int>(
+  dependencies: [
+    counterId,
+    counterStorageProvider.notifier,
+  ],
+  name: 'counterProvider',
+  (ref) => Counter(ref.read, id: ref.watch(counterId)),
 );
 
 class Counter extends StateNotifier<int> {
