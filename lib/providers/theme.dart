@@ -25,7 +25,7 @@ class _ThemeController extends StateNotifier<ThemeMode> {
           .map((mode) => SheetAction(
                 label: describeEnum(mode),
                 key: mode,
-              ))
+              ),)
           .toList(),
     ))!;
   }

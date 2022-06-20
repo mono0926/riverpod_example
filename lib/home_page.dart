@@ -43,10 +43,12 @@ class _PopupMenuButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return PopupMenuButton<_Menu>(
       itemBuilder: (context) => _Menu.values
-          .map((menu) => PopupMenuItem(
-                value: menu,
-                child: Text(describeEnum(menu)),
-              ))
+          .map(
+            (menu) => PopupMenuItem(
+              value: menu,
+              child: Text(describeEnum(menu)),
+            ),
+          )
           .toList(),
       onSelected: (menu) {
         switch (menu) {

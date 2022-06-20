@@ -67,7 +67,7 @@ class _Tile extends ConsumerWidget {
         ],
       ),
       onTap: () {
-        ref.read(selectedIdProvider).state = id;
+        ref.read(selectedIdProvider.notifier).update((_) => id);
         Navigator.of(context).push<void>(
           MaterialPageRoute(
             builder: (context) => const DetailPage(),

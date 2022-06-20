@@ -5,10 +5,11 @@ import 'package:uuid/uuid.dart';
 final selectedIdProvider = StateProvider<String>((_) => '');
 
 AutoDisposeStateNotifierProvider<Counter, int> selectedCounterProvider(
-        Reader read) =>
-    counterProviders(read(selectedIdProvider).state);
+  Reader read,
+) =>
+    counterProviders(read(selectedIdProvider));
 
-final counterId = ScopedProvider<String>((ref) => throw UnimplementedError());
+final counterId = Provider<String>((ref) => throw UnimplementedError());
 
 final counterProviders =
     StateNotifierProvider.autoDispose.family<Counter, int, String>(
@@ -57,11 +58,12 @@ class CounterStorage extends StateNotifier<Map<String, int>> {
       : super(
           Map.fromEntries(
             List.generate(
-                100,
-                (_) => MapEntry(
-                      _uuid.v4(),
-                      0,
-                    )),
+              100,
+              (_) => MapEntry(
+                _uuid.v4(),
+                0,
+              ),
+            ),
           ),
         );
 

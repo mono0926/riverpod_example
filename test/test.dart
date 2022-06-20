@@ -1,3 +1,4 @@
+// ignore_for_file: type=lint, unused_local_variable
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -87,8 +88,8 @@ void main() {
   });
 
   test('immutable const', () {
-    final x1 = Immutable2(1);
-    final x2 = Immutable2(1);
+    const x1 = Immutable2(1);
+    const x2 = Immutable2(1);
     expect(identical(x1, x2), isFalse);
 
     const x3 = Immutable2(1);
@@ -168,8 +169,8 @@ void main() {
   });
   test('list immutable shallow copy borken', () {
     var list1 = [
-      [Immutable3(1)],
-      [Immutable3(2)]
+      [const Immutable3(1)],
+      [const Immutable3(2)]
     ];
     final list2 = list1;
     list1 = List.of(list1);
@@ -181,8 +182,8 @@ void main() {
   });
 
   test('Immutable mutable list', () {
-    final x1 = Immutable4([1, 2]);
-    final x2 = x1;
+    const x1 = Immutable4([1, 2]);
+    const x2 = x1;
     x1.values.clear();
     print(x1); // values: []
     print(x2); // values: []
@@ -209,7 +210,9 @@ void main() {
 
   test('collection operation Set', () {
     final x1 = {1, 2};
-    final x2 = Set.of(x1)..add(2)..add(3);
+    final x2 = Set.of(x1)
+      ..add(2)
+      ..add(3);
     final x3 = {
       ...x1,
       2,

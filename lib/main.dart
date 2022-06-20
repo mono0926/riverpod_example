@@ -21,25 +21,43 @@ class _ProviderObserver implements ProviderObserver {
 
   @override
   void didAddProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object? value,
+    ProviderContainer container,
   ) {
     logger.info('provider: $provider, value: $value');
   }
 
   @override
   void didDisposeProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
+    ProviderContainer container,
   ) {
     logger.info('provider: $provider');
   }
 
   @override
   void didUpdateProvider(
-    ProviderBase provider,
+    ProviderBase<dynamic> provider,
     Object? previousValue,
     Object? newValue,
+    ProviderContainer container,
   ) {
     logger.info('provider: $provider, newValue: $newValue');
+  }
+
+  @override
+  void providerDidFail(
+    ProviderBase<dynamic> provider,
+    Object error,
+    StackTrace stackTrace,
+    ProviderContainer container,
+  ) {
+    logger.info(
+      'provider: $provider'
+      ', error: $error'
+      ', stackTrace: $stackTrace'
+      ', container: $container',
+    );
   }
 }

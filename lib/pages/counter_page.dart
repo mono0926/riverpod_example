@@ -26,7 +26,8 @@ class CounterPage extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(_counterProvider).state++,
+        onPressed: () =>
+            ref.read(_counterProvider.notifier).update((state) => state + 1),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
@@ -39,7 +40,7 @@ class _Counter extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Text(
-      '${ref.watch(_counterProvider).state}',
+      '${ref.watch(_counterProvider)}',
       style: Theme.of(context).textTheme.headline4,
     );
   }

@@ -19,7 +19,7 @@ class _Router {
     CountersPage.routeName: (_) => const CountersPage(),
   };
 
-  Route onGenerateRoute(RouteSettings settings) {
+  Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final pushPage = pushRoutes[settings.name]!;
     return MaterialPageRoute<void>(
       settings: settings,
