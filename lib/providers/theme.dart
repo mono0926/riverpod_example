@@ -4,8 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/providers/providers.dart';
 
-final lightTheme = ThemeData.from(colorScheme: const ColorScheme.light());
-final darkTheme = ThemeData.from(colorScheme: const ColorScheme.dark());
+ThemeData get lightTheme => ThemeData.from(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.purple,
+      ),
+      useMaterial3: true,
+    );
+ThemeData get darkTheme => ThemeData.from(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.purple,
+        brightness: Brightness.dark,
+      ),
+      useMaterial3: true,
+    );
 
 final themeProvider = StateNotifierProvider<_ThemeController, ThemeMode>(
   (ref) => _ThemeController(ref.read),
@@ -22,10 +33,12 @@ class _ThemeController extends StateNotifier<ThemeMode> {
       title: 'Theme',
       message: 'Current: ${describeEnum(state)}',
       actions: ThemeMode.values
-          .map((mode) => SheetAction(
-                label: describeEnum(mode),
-                key: mode,
-              ),)
+          .map(
+            (mode) => SheetAction(
+              label: describeEnum(mode),
+              key: mode,
+            ),
+          )
           .toList(),
     ))!;
   }
