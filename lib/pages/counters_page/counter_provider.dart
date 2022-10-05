@@ -7,28 +7,28 @@ final counterId = Provider<String>((ref) => throw UnimplementedError());
 final counterProvider = StateNotifierProvider.autoDispose<Counter, int>(
   dependencies: [
     counterId,
-    counterStorageProvider.notifier,
+    counterStorageProvider,
   ],
   name: 'counterProvider',
-  (ref) => Counter(ref.read, id: ref.watch(counterId)),
+  (ref) => Counter(ref, id: ref.watch(counterId)),
 );
 
 class Counter extends StateNotifier<int> {
   Counter(
-    this._read, {
+    this._ref, {
     required this.id,
-  }) : super(_read(counterStorageProvider.notifier).count(id: id)) {
+  }) : super(_ref.read(counterStorageProvider.notifier).count(id: id)) {
     _removeListener = _storage.addListener((_) {
       state = _storage.count(id: id);
     });
   }
 
-  final Reader _read;
+  final Ref _ref;
   final String id;
 
   late RemoveListener _removeListener;
 
-  CounterStorage get _storage => _read(counterStorageProvider.notifier);
+  CounterStorage get _storage => _ref.read(counterStorageProvider.notifier);
 
   void increment() {
     _storage.update(

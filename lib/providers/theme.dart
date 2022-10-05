@@ -19,17 +19,17 @@ ThemeData get darkTheme => ThemeData.from(
     );
 
 final themeProvider = StateNotifierProvider<_ThemeController, ThemeMode>(
-  (ref) => _ThemeController(ref.read),
+  _ThemeController.new,
 );
 
 class _ThemeController extends StateNotifier<ThemeMode> {
-  _ThemeController(this._read) : super(ThemeMode.system);
+  _ThemeController(this._ref) : super(ThemeMode.system);
 
-  final Reader _read;
+  final Ref _ref;
 
   Future<void> showThemeSelection() async {
     state = (await showModalActionSheet(
-      context: _read(navigatorKeyProvider).currentContext!,
+      context: _ref.read(navigatorKeyProvider).currentContext!,
       title: 'Theme',
       message: 'Current: ${describeEnum(state)}',
       actions: ThemeMode.values

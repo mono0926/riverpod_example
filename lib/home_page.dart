@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/providers/providers.dart';
 
-import 'providers/providers.dart';
-
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
