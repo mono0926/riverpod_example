@@ -238,8 +238,9 @@ void main() {
   });
 }
 
-class FooNotifier extends StateNotifier<Immutable4> {
-  FooNotifier() : super(const Immutable4([]));
+class FooNotifier extends Notifier<Immutable4> {
+  @override
+  Immutable4 build() => Immutable4([]);
 
   void add(int value) {
     state = state.copyWith(

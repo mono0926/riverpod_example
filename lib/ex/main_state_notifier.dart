@@ -9,17 +9,16 @@ void main() {
   );
 }
 
-final _controller = StateNotifierProvider<_Controller, Mutable>(
-  (_) => _Controller(),
-);
+final _controller = NotifierProvider<_Controller, Mutable>(_Controller.new);
 
 class Mutable {
   Mutable(this.value);
   int value;
 }
 
-class _Controller extends StateNotifier<Mutable> {
-  _Controller() : super(Mutable(0));
+class _Controller extends Notifier<Mutable> {
+  @override
+  Mutable build() => Mutable(0);
 
   void increment() {
     state.value++;

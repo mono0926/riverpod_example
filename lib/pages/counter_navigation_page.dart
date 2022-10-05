@@ -3,20 +3,18 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_example/util/util.dart';
 
-final _counterProvider = StateNotifierProvider.autoDispose<_Counter, int>(
-  (ref) => _Counter(),
-);
+final _counterProvider =
+    NotifierProvider.autoDispose<_Counter, int>(_Counter.new);
 
-class _Counter extends StateNotifier<int> {
-  _Counter() : super(0);
+class _Counter extends AutoDisposeNotifier<int> {
+  _Counter();
+  @override
+  int build() {
+    ref.onDispose(() => logger.info('disposed(state: $state)'));
+    return 0;
+  }
 
   void increment() => state++;
-
-  @override
-  void dispose() {
-    logger.info('disposed(state: $state)');
-    super.dispose();
-  }
 }
 
 class CounterDialogPage extends ConsumerWidget {

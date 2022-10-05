@@ -4,31 +4,32 @@ import 'package:uuid/uuid.dart';
 
 final counterId = Provider<String>((ref) => throw UnimplementedError());
 
-final counterProvider = StateNotifierProvider.autoDispose<Counter, int>(
+final counterProvider = NotifierProvider.autoDispose<Counter, int>(
   dependencies: [
     counterId,
     counterStorageProvider,
   ],
   name: 'counterProvider',
-  (ref) => Counter(ref, id: ref.watch(counterId)),
+  Counter.new,
 );
 
-class Counter extends StateNotifier<int> {
-  Counter(
-    this._ref, {
-    required this.id,
-  }) : super(_ref.read(counterStorageProvider.notifier).count(id: id)) {
-    _removeListener = _storage.addListener((_) {
-      state = _storage.count(id: id);
-    });
+class Counter extends AutoDisposeNotifier<int> {
+  @override
+  int build() {
+    id = ref.watch(counterId);
+    ref
+      ..listen(counterStorageProvider, (previous, next) {
+        state = _storage.count(id: id);
+      })
+      ..onDispose(() {
+        logger.info('disposed(id: $id, state: $state)');
+      });
+    return ref.watch(counterStorageProvider.notifier).count(id: id);
   }
 
-  final Ref _ref;
-  final String id;
+  late final String id;
 
-  late RemoveListener _removeListener;
-
-  CounterStorage get _storage => _ref.read(counterStorageProvider.notifier);
+  CounterStorage get _storage => ref.read(counterStorageProvider.notifier);
 
   void increment() {
     _storage.update(
@@ -36,33 +37,24 @@ class Counter extends StateNotifier<int> {
       count: state + 1,
     );
   }
-
-  @override
-  void dispose() {
-    logger.info('disposed(id: $id, state: $state)');
-    _removeListener();
-    super.dispose();
-  }
 }
 
 final counterStorageProvider =
-    StateNotifierProvider.autoDispose<CounterStorage, Map<String, int>>(
-  (_) => CounterStorage(),
+    NotifierProvider.autoDispose<CounterStorage, Map<String, int>>(
+  CounterStorage.new,
 );
 
-class CounterStorage extends StateNotifier<Map<String, int>> {
-  CounterStorage()
-      : super(
-          Map.fromEntries(
-            List.generate(
-              100,
-              (_) => MapEntry(
-                _uuid.v4(),
-                0,
-              ),
-            ),
+class CounterStorage extends AutoDisposeNotifier<Map<String, int>> {
+  @override
+  Map<String, int> build() => Map.fromEntries(
+        List.generate(
+          100,
+          (_) => MapEntry(
+            _uuid.v4(),
+            0,
           ),
-        );
+        ),
+      );
 
   static const _uuid = Uuid();
 
